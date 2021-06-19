@@ -1,3 +1,5 @@
+/* CSS for Navigation Component Start */
+
 .nav ul {
     list-style: none;
     margin: 0;
@@ -35,3 +37,5 @@
   .nav button:focus {
     outline: none;
   }
+
+  /* CSS for Navigation Component End */

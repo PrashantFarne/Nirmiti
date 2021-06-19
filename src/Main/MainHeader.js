@@ -1,3 +1,5 @@
+/* JSX for MAinHeader Component Start */
+
 import React from 'react';
 import Navigation from './Navigation';
 import classes from '../UI/Card';
@@ -14,3 +16,4 @@ const MainHeader = (props) => {
 };
 
 export default MainHeader;
+/* JSX for Login Component End */

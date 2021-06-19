@@ -1,3 +1,5 @@
+/* JSX for Login Component Start */
+
 import React, { useEffect, useState,useReducer } from 'react';
 import Card from '../UI/Card';
 import classes from './Login.module.css';
@@ -124,3 +126,5 @@ const Login = (props) => {
 };
 
 export default Login;
+
+/* JSX for Login Component End */

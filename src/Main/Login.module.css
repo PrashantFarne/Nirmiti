@@ -1,3 +1,5 @@
+/* CSS for Login Component Start */
+
 .login {
     width: 90%;
     max-width: 640px;
@@ -59,3 +61,5 @@
     }
   
   } 
+
+  /* CSS for Login Component End */

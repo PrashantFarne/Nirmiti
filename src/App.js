@@ -1,122 +1,37 @@
-import { useState, useEffect } from "react";
-import "./App.scss";
-import StatusLine from "./Line";
+/* JSX for App Component Start */
+
+import React, { useState} from "react";
+import "./App.css";
+import Top from './Components/Top';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    loadTasksFromLocalStorage();
-  }, []);
+//logged
+   const [isLoggedIn,setIsLoggedIn]=useState(false);
 
-  function addEmptyTask(status) {
-    const lastTask = tasks[tasks.length - 1];
+  const loginHandler=(email,password)=>{
+   setIsLoggedIn(true);
 
-    let newTaskId = 1;
-
-    if (lastTask !== undefined) {
-      newTaskId = lastTask.id + 1;
-    }
-
-    setTasks((tasks) => [
-      ...tasks,
-      {
-        id: newTaskId,
-        title: "",
-        description: "",
-        urgency: "",
-        status: status,
-      },
-    ]);
   }
 
-  function addTask(taskToAdd) {
-    let filteredTasks = tasks.filter((task) => {
-      return task.id !== taskToAdd.id;
-    });
-
-    let newTaskList = [...filteredTasks, taskToAdd];
-
-    setTasks(newTaskList);
-
-    saveTasksToLocalStorage(newTaskList);
-  }
-
-  function deleteTask(taskId) {
-    let filteredTasks = tasks.filter((task) => {
-      return task.id !== taskId;
-    });
-
-    setTasks(filteredTasks);
-
-    saveTasksToLocalStorage(filteredTasks);
-  }
-
-  function moveTask(id, newStatus) {
-    let task = tasks.filter((task) => {
-      return task.id === id;
-    })[0];
-
-    let filteredTasks = tasks.filter((task) => {
-      return task.id !== id;
-    });
-
-    task.status = newStatus;
-
-    let newTaskList = [...filteredTasks, task];
-
-    setTasks(newTaskList);
-
-    saveTasksToLocalStorage(newTaskList);
-  }
-
-  function saveTasksToLocalStorage(tasks) {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }
-
-  function loadTasksFromLocalStorage() {
-    let loadedTasks = localStorage.getItem("tasks");
-
-    let tasks = JSON.parse(loadedTasks);
-
-    if (tasks) {
-      setTasks(tasks);
-    }
+  const logoutHandler=()=>{
+    setIsLoggedIn(false);
   }
 
   return (
-    <div className="App">
-      <h1>Task Management</h1>
+    <React.Fragment>
+    <div>
+      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler}/>
       <main>
-        <section>
-          <StatusLine
-            tasks={tasks}
-            addEmptyTask={addEmptyTask}
-            addTask={addTask}
-            deleteTask={deleteTask}
-            moveTask={moveTask}
-            status="Backlog"
-          />
-          <StatusLine
-            tasks={tasks}
-            addEmptyTask={addEmptyTask}
-            addTask={addTask}
-            deleteTask={deleteTask}
-            moveTask={moveTask}
-            status="In Progress"
-          />
-          <StatusLine
-            tasks={tasks}
-            addEmptyTask={addEmptyTask}
-            addTask={addTask}
-            deleteTask={deleteTask}
-            moveTask={moveTask}
-            status="Done"
-          />
-        </section>
+        {!isLoggedIn && <Login onLogin={loginHandler}/>}
+        {isLoggedIn && <Top onLogout={logoutHandler}/>}
       </main>
     </div>
+</React.Fragment>
   );
-}
+};
 
 export default App;
+
+/* JSX for App Component End */
+

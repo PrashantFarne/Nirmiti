@@ -1,0 +1,41 @@
+/* CSS for Form Component Start */
+.container {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 10px;
+  justify-content: center;
+  width: 400px;
+  align-self: center;
+  margin: 5px;
+  height: 170px;
+}
+
+button {
+  color: white;
+  width: 120px;
+  height: 35px;
+}
+
+input {
+  padding: 3px;
+}
+
+select {
+  padding: 3px;
+}
+
+.container {
+  animation: slide-in 0.7s both;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(-1000px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* CSS for Form Component End */
